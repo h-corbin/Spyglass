@@ -33,6 +33,9 @@ build/
 .vscode/
 
 .jar
+.metadata/
+.DS_Store
+node_modules
 
 application.yml
 application-dev.yml
