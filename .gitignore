@@ -34,5 +34,5 @@ build/
 
 .jar
 
-application.yaml
-application-dev.yaml
+application.yml
+application-dev.yml
