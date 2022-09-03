@@ -7,6 +7,7 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -38,8 +39,11 @@ public class SecurityConfiguration {
         http.httpBasic();
         http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()).ignoringAntMatchers("/register");
         
+        http.authorizeHttpRequests().mvcMatchers(HttpMethod.OPTIONS, "/**").permitAll();
+        
         http.authorizeHttpRequests().mvcMatchers("/goals/**").authenticated();
         http.authorizeHttpRequests().mvcMatchers("/users/**").authenticated();
+        
         
         // logout is a post request to /logout
         http.authorizeHttpRequests().mvcMatchers("/logout/**").permitAll();

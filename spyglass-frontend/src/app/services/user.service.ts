@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs';
+import { map, Observable } from 'rxjs';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -15,14 +16,10 @@ export class UserService{
 
   constructor(private http: HttpClient) { }
 
-  authenticate(username: string, password: string) {
-    return this.http.get(this.url+username).pipe(map((res) => {
-        this.username = username;
-        this.password = password;
-        this.registerSuccessfulLogin(username, password);
-      }));
+  authenticate(username: string, password: string) :Observable<User> {
+    return this.http.get<User>(this.url+username);
   }
-
+  
   createBasicAuthToken(username: string, password: string) {
     return 'Basic ' + window.btoa(username + ":" + password)
   }
