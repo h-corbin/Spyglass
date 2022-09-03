@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { GoalsService } from '../goals.service';
+import { Goal } from 'src/app/models/goal';
+import { GoalsService } from 'src/app/services/goals.service';
 
 
 @Component({
@@ -8,7 +9,7 @@ import { GoalsService } from '../goals.service';
   styleUrls: ['./goals.component.css']
 })
 export class GoalsComponent implements OnInit {
-  goals :string = "";
+  goals :Goal = new Goal();
 
   constructor(private goalService :GoalsService) { }
 

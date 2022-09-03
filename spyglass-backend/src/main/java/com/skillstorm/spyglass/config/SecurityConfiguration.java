@@ -39,23 +39,12 @@ public class SecurityConfiguration {
         http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()).ignoringAntMatchers("/register");
         
         http.authorizeHttpRequests().mvcMatchers("/goals/**").authenticated();
+        http.authorizeHttpRequests().mvcMatchers("/users/**").authenticated();
         
         // logout is a post request to /logout
         http.authorizeHttpRequests().mvcMatchers("/logout/**").permitAll();
         http.logout().deleteCookies("JSESSIONID").invalidateHttpSession(true);
         
         return http.build();
-    }
-	
-	@Bean
-	CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("*"));
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "OPTIONS", "DELETE", "PUT"));
-        configuration.setAllowedHeaders(Arrays.asList("X-Requested-With", "Origin", "Content-Type", "Accept", "Authorization"));
-        configuration.setAllowCredentials(true);
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
-        return source;
     }
 }
