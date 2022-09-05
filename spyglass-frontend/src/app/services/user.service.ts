@@ -21,7 +21,7 @@ export class UserService{
     let httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
-        'Authorization': 'Basic ' + window.btoa('admin:password')
+        'Authorization': 'Basic ' + window.btoa(username + ":" + password)
       }),
     };
     return this.http.get<User>(this.url+username, httpOptions);
