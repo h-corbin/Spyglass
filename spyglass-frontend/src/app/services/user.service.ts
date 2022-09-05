@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { map, Observable } from 'rxjs';
 import { User } from '../models/user';
 
@@ -8,42 +9,38 @@ import { User } from '../models/user';
 })
 export class UserService{
 
-  url = 'http://localhost:8080/users/'
-  USER_NAME_SESSION_ATTRIBUTE_NAME = 'authenticatedUser'
+  url = 'http://localhost:8080/users/';
 
   public username :string = '';
   public password :string = '';
+  public loggedIn = false;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   authenticate(username: string, password: string) :Observable<User> {
-    return this.http.get<User>(this.url+username);
-  }
-  
-  createBasicAuthToken(username: string, password: string) {
-    return 'Basic ' + window.btoa(username + ":" + password)
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'Basic ' + window.btoa('admin:password')
+      }),
+    };
+    return this.http.get<User>(this.url+username, httpOptions);
   }
 
   registerSuccessfulLogin(username: string, password: string) {
-    sessionStorage.setItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME, username)
+    this.username = username;
+    this.password = password;
+    this.loggedIn = true;
   }
 
   logout() {
-    sessionStorage.removeItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME);
-    this.username = '';
-    this.password = '';
-  }
-
-  isUserLoggedIn() {
-    let user = sessionStorage.getItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME)
-    if (user === null) return false
-    return true
-  }
-
-  getLoggedInUserName() {
-    let user = sessionStorage.getItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME)
-    if (user === null) return ''
-    return user
+    this.http.post('http://localhost:8080/logout', {}).subscribe( () => {
+      this.loggedIn = false;
+      this.username = '';
+      this.password = '';
+      this.router.navigate(['/login']);
+    });
+    
   }
 
 }

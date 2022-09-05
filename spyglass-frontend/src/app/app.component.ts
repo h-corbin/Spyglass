@@ -10,5 +10,21 @@ import { UserService } from './services/user.service';
 })
 export class AppComponent {
   title = 'spyglass';
+  loggedIn = false;
+
+  constructor(
+    private router: Router, private userService: UserService
+  ) {}
   
+  ngOnInit() {
+    this.router.events.subscribe(event => {
+      if (event.constructor.name === "NavigationEnd") {
+       this.loggedIn = this.userService.loggedIn;
+      }
+    })
+  }
+
+  logout() {
+    this.userService.logout();
+  }
 }

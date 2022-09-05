@@ -27,8 +27,6 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.userService.authenticate(this.username, this.password).subscribe(res => {
-      this.userService.username = this.username;
-      this.userService.password = this.password;
       this.userService.registerSuccessfulLogin(this.username, this.password);
       
       this.invalidLogin = false;

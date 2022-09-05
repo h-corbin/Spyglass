@@ -8,12 +8,6 @@ import { Goal } from 'src/app/models/goal';
 })
 export class GoalsService {
   url : string = 'http://localhost:8080/goals';
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type':  'application/json',
-      'Authorization': 'Basic ' + window.btoa('admin:password')
-    }),
-  };
 
   constructor(private http: HttpClient) { }
 

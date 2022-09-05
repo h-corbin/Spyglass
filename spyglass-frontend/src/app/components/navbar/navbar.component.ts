@@ -9,7 +9,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class NavbarComponent implements OnInit {
 
-  isLoggedIn = false;
+  loggedIn = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -18,7 +18,11 @@ export class NavbarComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.isLoggedIn = this.userService.isUserLoggedIn();
+    this.loggedIn = this.userService.loggedIn;
+  }
+
+  ngOnChange() {
+    this.loggedIn = this.userService.loggedIn;
   }
 
   logout() {
