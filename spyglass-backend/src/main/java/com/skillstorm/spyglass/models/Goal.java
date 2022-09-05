@@ -22,7 +22,7 @@ public class Goal {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long goalId;
+	private int goalId;
 	
 	@NotBlank
 	private String name;
@@ -64,11 +64,11 @@ public class Goal {
 		this.users = users;
 	}
 
-	public Long getGoalId() {
+	public int getGoalId() {
 		return goalId;
 	}
 
-	public void setGoalId(Long goalId) {
+	public void setGoalId(int goalId) {
 		this.goalId = goalId;
 	}
 
