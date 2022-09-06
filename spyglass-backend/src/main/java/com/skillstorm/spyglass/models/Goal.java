@@ -2,7 +2,6 @@ package com.skillstorm.spyglass.models;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 

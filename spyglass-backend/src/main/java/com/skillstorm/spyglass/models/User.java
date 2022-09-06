@@ -1,6 +1,7 @@
 package com.skillstorm.spyglass.models;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -23,7 +24,6 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 @Entity
 @Table(name = "users")
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "username")
-@Transactional
 public class User {
 	
 	@Id
@@ -57,7 +57,7 @@ public class User {
 	}
 	
 	@OneToMany(mappedBy="user")
-    private Set<Role> roles;
+    private Set<Role> roles = new HashSet<>(Arrays.asList(new Role()));
 	
 
 	public User() {
@@ -130,6 +130,14 @@ public class User {
 
 	public void setGoals(Set<Goal> goals) {
 		this.goals = goals;
+	}
+
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
 	}
 	
 	
