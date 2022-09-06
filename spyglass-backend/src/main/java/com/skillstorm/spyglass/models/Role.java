@@ -8,12 +8,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+
 
 
 
 @Entity
 @Table(name="authorities")
-
 public class Role {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +23,8 @@ public class Role {
 	private String authority = "ROLE_USER";
 	
 	@ManyToOne
-	@JoinColumn(name="username", nullable=false)
+	@JoinColumn(name="username")
+	@JsonIdentityReference(alwaysAsId = true)
 	private User user;
 
 	public String getAuthority() {
@@ -39,6 +41,14 @@ public class Role {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public int getAuthorityId() {
+		return authorityId;
+	}
+
+	public void setAuthorityId(int authorityId) {
+		this.authorityId = authorityId;
 	}
 	
 	

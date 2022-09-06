@@ -10,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -34,26 +33,25 @@ public class UserController {
 		return principal;
 	}
 
-	@GetMapping("/{username}")
-	public User getUser(Principal principal, @PathVariable String username) {
-		return userService.findById(username, principal.getName());
+	@GetMapping
+	public User getUser(Principal principal) {
+		return userService.findById(principal.getName());
 	}
 	
 	@PostMapping
-	public ResponseEntity<User> create(Principal principal, @Valid @RequestBody User user) {
-		return new ResponseEntity<User>
-		(userService.save(user, principal.getName()), HttpStatus.CREATED);
+	public ResponseEntity<User> newUser(@Valid @RequestBody User user) {
+		return new ResponseEntity<User>(userService.save(user), HttpStatus.CREATED);
 	}
 	
-	@PutMapping("/{username}")
-	public User update(Principal principal, @Valid @RequestBody User user, @PathVariable String username) {
-		user.setUsername(username);
+	@PutMapping
+	public User update(Principal principal, @Valid @RequestBody User user) {
+		user.setUsername(principal.getName());
 		return userService.update(user, principal.getName());
 	}
 	
-	@DeleteMapping("/{username}")
+	@DeleteMapping
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
-	public void deleteById(Principal principal, @PathVariable int username) {
-		userService.deleteById(username, principal.getName());
+	public void deleteUser(Principal principal) {
+		userService.deleteById(principal.getName());
 	}
 }

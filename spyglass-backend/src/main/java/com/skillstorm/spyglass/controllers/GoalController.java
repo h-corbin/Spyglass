@@ -51,6 +51,11 @@ public class GoalController {
 		return goalService.update(goal, principal.getName());
 	}
 	
+	@PutMapping("/{id}/{username}")
+	public Goal newUser(Principal principal, @PathVariable int id, @PathVariable String username) {
+		return goalService.addUser(id, principal.getName(), username);
+	}
+	
 	@DeleteMapping("/{id}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void deleteById(Principal principal, @PathVariable int id) {
@@ -59,7 +64,7 @@ public class GoalController {
 	
 	@DeleteMapping
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
-	public void deleteAllGoals(Principal principal, @PathVariable int id) {
+	public void deleteAllGoals(Principal principal) {
 		goalService.deleteAllGoals(principal.getName());
 	}
 }

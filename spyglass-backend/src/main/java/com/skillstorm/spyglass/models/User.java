@@ -1,6 +1,5 @@
 package com.skillstorm.spyglass.models;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -15,8 +14,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-
-import org.springframework.transaction.annotation.Transactional;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -56,7 +53,7 @@ public class User {
 		this.goals.add(goal);
 	}
 	
-	@OneToMany(mappedBy="user")
+	@OneToMany(mappedBy = "user")
     private Set<Role> roles = new HashSet<>(Arrays.asList(new Role()));
 	
 

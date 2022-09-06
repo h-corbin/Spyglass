@@ -10,11 +10,6 @@ import com.skillstorm.spyglass.models.User;
 
 public interface GoalRepository extends CrudRepository<Goal, Integer>{
 
-//	@Query(
-//			value = "SELECT * FROM goals g INNER JOIN goals_per_user gpu ON g.goal_id = gpu.goal_id"
-//					+ "WHERE gpu.username = :username",
-//			nativeQuery=true
-//			)
 	List<Goal> findByUsers(User user);
 
 	@Query(value = "SELECT * FROM goals g INNER JOIN goals_per_user gpu "

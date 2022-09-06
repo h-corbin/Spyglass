@@ -19,5 +19,7 @@ public interface GoalService {
 	void deleteById(int id, String name);
 
 	void deleteAllGoals(String name);
+	
+	Goal addUser(int goalId, String username, String newUser);
 
 }

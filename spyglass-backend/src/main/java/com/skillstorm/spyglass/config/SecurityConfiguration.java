@@ -1,7 +1,5 @@
 package com.skillstorm.spyglass.config;
 
-import java.util.Arrays;
-
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +10,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.logout.HttpStatusReturningLogoutSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -46,7 +46,6 @@ public class SecurityConfiguration {
         http.authorizeHttpRequests().mvcMatchers("/goals/**").authenticated();
         http.authorizeHttpRequests().mvcMatchers("/users/**").authenticated();
         
-        
         // logout is a post request to /logout
         http.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).permitAll();
         http.logout().logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler(HttpStatus.OK));
@@ -54,4 +53,17 @@ public class SecurityConfiguration {
         
         return http.build();
     }
+	
+	@Bean
+    public WebSecurityCustomizer webSecurityCustomizer() {
+		// don't need to be authenticated for creating new users
+        return (web) -> web.ignoring().antMatchers(HttpMethod.POST, "/users/");
+    }
+	
+	@Bean
+	public JdbcUserDetailsManager jdbcUserDetailsManager() throws Exception {
+		JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager();
+		jdbcUserDetailsManager.setDataSource(datasource);
+		return jdbcUserDetailsManager;
+	}
 }

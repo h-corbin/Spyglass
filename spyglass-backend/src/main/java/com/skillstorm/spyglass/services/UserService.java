@@ -2,17 +2,16 @@ package com.skillstorm.spyglass.services;
 
 import javax.validation.Valid;
 
-import com.skillstorm.spyglass.models.Goal;
 import com.skillstorm.spyglass.models.User;
 
 public interface UserService {
 
-	User findById(String username, String name);
+	User findById(String username);
 
-	User save(@Valid User user, String name);
+	User save(@Valid User user);
 
-	User update(@Valid User user, String name);
+	User update(@Valid User user, String username);
 
-	void deleteById(int username, String name);
+	void deleteById(String username);
 
 }
