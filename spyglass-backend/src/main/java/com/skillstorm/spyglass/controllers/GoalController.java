@@ -57,7 +57,7 @@ public class GoalController {
 		goalService.deleteById(id, principal.getName());
 	}
 	
-	@DeleteMapping("/{id}")
+	@DeleteMapping
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void deleteAllGoals(Principal principal, @PathVariable int id) {
 		goalService.deleteAllGoals(principal.getName());

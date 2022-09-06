@@ -1,6 +1,7 @@
 package com.skillstorm.spyglass.models;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -13,8 +14,15 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.transaction.annotation.Transactional;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 @Entity
 @Table(name = "users")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "username")
+@Transactional
 public class User {
 	
 	@Id
@@ -41,8 +49,11 @@ public class User {
 			  name = "goals_per_user", 
 			  joinColumns = @JoinColumn(name = "username"), 
 			  inverseJoinColumns = @JoinColumn(name = "goal_id"))
-	private Set<Goal> goals;
+	private Set<Goal> goals = new HashSet<>();
 	
+	public void addGoal(Goal goal) {
+		this.goals.add(goal);
+	}
 	
 
 	public User() {

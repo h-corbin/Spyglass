@@ -3,6 +3,7 @@ package com.skillstorm.spyglass.models;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -15,6 +16,8 @@ import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
 
 @Entity
 @Table(name = "goals")
@@ -29,11 +32,8 @@ public class Goal {
 	
 	private String description;
 	private String picture;
-	
-	@NotNull
 	private LocalDate targetDate;
 	
-	@NotNull
 	@DecimalMin(value = "0.0")
 	@Digits(integer=10, fraction=2)
 	private BigDecimal targetAmount;
@@ -44,7 +44,12 @@ public class Goal {
 	private double currentAmount;
 	
 	@ManyToMany(mappedBy = "goals")
-	private Set<User> users;
+	@JsonIdentityReference(alwaysAsId = true)
+	private Set<User> users = new HashSet<>();
+	
+	public void addUser(User user) {
+		this.users.add(user);
+	}
 
 	
 	public Goal() {
