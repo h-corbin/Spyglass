@@ -24,7 +24,7 @@ export class UserService{
         'Authorization': 'Basic ' + window.btoa(username + ":" + password)
       }),
     };
-    return this.http.get<User>(this.url+username, httpOptions);
+    return this.http.get<User>(this.url+'authenticate', httpOptions);
   }
 
   registerSuccessfulLogin(username: string, password: string) {
