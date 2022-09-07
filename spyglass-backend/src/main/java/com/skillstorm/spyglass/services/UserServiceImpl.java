@@ -3,9 +3,11 @@ package com.skillstorm.spyglass.services;
 import java.util.Optional;
 import java.util.Set;
 
+import javax.naming.directory.InvalidAttributesException;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,6 +25,8 @@ public class UserServiceImpl implements UserService{
 	private RoleRepository roleRepository;
 	@Autowired
 	private GoalService goalService;
+	@Autowired
+	private PasswordEncoder encoder;
 
 	@Override
 	public User findById(String name) {
@@ -32,12 +36,21 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public User save(@Valid User user) {
+		// check if user name is already taken
+		if (userRepository.findById(user.getUsername()).isPresent()) {
+			return null;
+		}
+		
+		user.setPassword(encoder.encode(user.getPassword()));
+		user.setEnabled(true);
 		user = userRepository.save(user);
+		
 		Set<Role> roleList = user.getRoles();
 		for (Role role : roleList) {
 			role.setUser(user);
 			roleRepository.save(role);
 		}
+		
 		return user;
 	}
 

@@ -40,7 +40,10 @@ public class UserController {
 	
 	@PostMapping
 	public ResponseEntity<User> newUser(@Valid @RequestBody User user) {
-		return new ResponseEntity<User>(userService.save(user), HttpStatus.CREATED);
+		User newUser = userService.save(user);
+		return newUser != null ? 
+				new ResponseEntity<User>(newUser, HttpStatus.CREATED)
+				: new ResponseEntity<User>(newUser, HttpStatus.BAD_REQUEST);
 	}
 	
 	@PutMapping
