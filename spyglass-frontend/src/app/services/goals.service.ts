@@ -14,4 +14,8 @@ export class GoalsService {
   getAllGoals() :Observable<Array<Goal>> {
     return this.http.get<Array<Goal>>(this.url);
   }
+
+  newGoal(goal: Goal) :Observable<Goal> {
+    return this.http.post<Goal>(this.url, goal);
+  }
 }

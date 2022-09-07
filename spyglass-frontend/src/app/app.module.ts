@@ -9,10 +9,10 @@ import { AppComponent } from './app.component';
 import { GoalsComponent } from './components/goals/goals.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
 import { HttpInterceptorService } from './services/http-interceptor.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { NewGoalComponent } from './components/new-goal/new-goal.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     GoalsComponent,
     LoginComponent,
     HomeComponent,
-    NavbarComponent
+    NewGoalComponent
   ],
   imports: [
     BrowserModule,

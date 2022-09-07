@@ -1,0 +1,42 @@
+<div class="container col-lg-6">
+    <div class="card-body">
+        <form (ngSubmit)="onSubmit()">
+            <h1 class="display-6">New Goal</h1>
+            <div class="alert alert-warning" *ngIf='newGoalFailed'>Error</div>
+            <div class="card">
+                <img class="image"
+                  src="{{ selectedType.image }}"
+                />
+    
+                <div>
+                    <label for="typeSelect" class="form-label">What are you saving for?</label>
+                    <select id="typeSelect" #typeSelect name="typeSelect" class="form-control" [(ngModel)]="selectedType">
+                        <option *ngFor="let type of typeList" [ngValue]="type">{{type.type}}</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="name">Goal Name: </label>
+                    <input id="name" class="form-control" placeholder="name your goal" name="name" type="text" [(ngModel)]=goal.name>
+                </div>
+                <div>
+                    <label for="description">Description: </label>
+                    <input id="description" class="form-control" name="description" type="text" [(ngModel)]=goal.description>
+                </div>
+                <div>
+                    <label for="target">Target Amount: </label>
+                    <input id="target" class="form-control" name="target" type="text" [(ngModel)]=goal.targetAmount>
+                </div>
+                <div>
+                    <label for="current">Current Amount: </label>
+                    <input id="current" class="form-control"  name="current" type="text" [(ngModel)]=goal.currentAmount>
+                </div>
+                <div>
+                    <label for="date">Target Date: </label>
+                    <input type="date" id="date" class="form-control" name="date" [(ngModel)]=goal.targetDate>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-outline-dark">Submit</button>
+        </form>
+    </div>
+</div>
