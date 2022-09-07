@@ -18,4 +18,8 @@ export class GoalsService {
   newGoal(goal: Goal) :Observable<Goal> {
     return this.http.post<Goal>(this.url, goal);
   }
+
+  deleteGoal(goal: Goal) :Observable<any>{
+    return this.http.delete(this.url+goal.goalId);
+  }
 }
