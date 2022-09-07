@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap' ;
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-login',
@@ -15,11 +17,12 @@ export class LoginComponent implements OnInit {
   successMessage: string = '';
   invalidLogin = false;
   loginSuccess = false;
+  user: User = new User();
 
   constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private userService: UserService
+    public router: Router,
+    private userService: UserService,
+    private modalService: NgbModal
   ) { }
 
   ngOnInit(): void {
@@ -37,6 +40,18 @@ export class LoginComponent implements OnInit {
       this.invalidLogin = true;
       this.loginSuccess = false;
     });
+  }
+
+  open(modal: any) {
+    this.modalService.open(modal);
+  }
+
+  save() {
+    console.log("saving")
+    this.userService.register(this.user).subscribe(res => {
+      console.log("registered")
+    })
+    this.modalService.dismissAll;
   }
 
 }

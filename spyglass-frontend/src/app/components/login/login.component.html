@@ -14,4 +14,40 @@
         </div>
         <button (click)=login() class="btn btn-success">Login</button>
     </form>
+    <div> <button (click)="open(newUserModal)">New User</button> </div>
 </div>
+
+
+<ng-template #newUserModal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Register New Account</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <form>
+        <div class="mb-3">
+            <label for="username">Username</label>
+            <input id="username" class="form-control" placeholder="Enter username" name="usrnm" type="text" [(ngModel)]=user.username>
+        </div>
+        <div class="mb-3">
+            <label for="passoword">Password</label>
+            <input id="password" class="form-control" placeholder="Enter password" name="usrnm" type="text" [(ngModel)]=user.password>
+        </div>
+        <div class="mb-3">
+            <label for="firstName">First Name</label>
+            <input id="firstName" class="form-control" name="fname" type="text" [(ngModel)]=user.firstName>
+        </div>
+        <div class="mb-3">
+            <label for="lastName">Last Name</label>
+            <input id="lastName" class="form-control" name="lname" type="text" [(ngModel)]=user.lastName>
+        </div>
+        <div class="mb-3">
+            <label for="email">Email</label>
+            <input id="email" class="form-control" name="em" type="text" [(ngModel)]=user.email>
+        </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="save()">Save</button>
+    </div>
+</ng-template>

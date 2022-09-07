@@ -17,7 +17,7 @@ export class UserService{
 
   constructor(private http: HttpClient, private router: Router) { }
 
-  authenticate(username: string, password: string) :Observable<User> {
+  authenticate(username: string, password: string): Observable<any> {
     let httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
@@ -39,8 +39,11 @@ export class UserService{
       this.username = '';
       this.password = '';
       this.router.navigate(['/login']);
-    });
-    
+    }); 
+  }
+
+  register(user: User): Observable<User>{
+    return this.http.post<User>(this.url, user);
   }
 
 }
