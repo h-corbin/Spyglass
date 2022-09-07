@@ -7,11 +7,11 @@ import { Goal } from 'src/app/models/goal';
   providedIn: 'root'
 })
 export class GoalsService {
-  url : string = 'http://localhost:8080/goals';
+  url : string = 'http://localhost:8080/goals/';
 
   constructor(private http: HttpClient) { }
 
-  getAllGoals() :Observable<Goal> {
-    return this.http.get<Goal>(this.url);
+  getAllGoals() :Observable<Array<Goal>> {
+    return this.http.get<Array<Goal>>(this.url);
   }
 }

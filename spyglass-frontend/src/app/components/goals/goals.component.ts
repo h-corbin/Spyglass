@@ -9,13 +9,16 @@ import { GoalsService } from 'src/app/services/goals.service';
   styleUrls: ['./goals.component.css']
 })
 export class GoalsComponent implements OnInit {
-  goals :Goal = new Goal();
+  goalList: Array<Goal> = [];
 
   constructor(private goalService :GoalsService) { }
 
   ngOnInit(): void {
     this.goalService.getAllGoals().subscribe( res => {
-      this.goals = res;
+      this.goalList = res;
+      for (var goal of this.goalList) {
+        goal.progress = 100 * (goal.currentAmount / goal.targetAmount);
+      }
     })
   }
 

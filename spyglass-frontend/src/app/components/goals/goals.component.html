@@ -1,2 +1,45 @@
-<p>{{goals.name}}</p>
-<p>this is goals component</p>
+<div class="container text-center">
+    <div class="row align-items-start">
+      <div class="col-4" *ngFor="let goal of goalList">
+        <div class="card">
+          <div class="card">
+            <img
+              src="{{ goal.picture }}"
+              class="card-img-top"
+            />
+            <div class="card-body">
+              <h5 class="card-title text-center">{{ goal.name }}</h5>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">{{ goal.description }}</li>
+                <li class="list-group-item">
+                  target date: {{ goal.targetDate }}
+                </li>
+                <li class="list-group-item">
+                  target amount: ${{ goal.targetAmount }}
+                </li>
+                <li class="list-group-item">
+                    current amount: ${{ goal.currentAmount }}
+                </li>
+                <li class="list-group-item">
+                    progress: {{ goal.progress }}%
+                    <mat-progress-bar mode="determinate" value="{{ goal.progress }}"></mat-progress-bar>
+                </li>
+                
+              </ul>
+              <br />
+              <!-- <div class="d-grid gap-2">
+                <button
+                  class="btn btn-warning"
+                  type="button"
+                  (click)="onSubmit(room)"
+                >
+                  Book this Room
+                </button>
+              </div> -->
+            </div>
+          </div>
+        </div> 
+        <br />
+      </div>
+    </div>
+  </div>

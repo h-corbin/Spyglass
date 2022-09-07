@@ -6,4 +6,5 @@ export class Goal {
     targetDate : string = '';
     targetAmount : number = 0.0;
     currentAmount : number = 0.0;
+    progress : number = 0;
 }
