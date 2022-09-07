@@ -1,5 +1,5 @@
 body { 
-    background-image: url("../assets/photos/background.jpg");
+    /* background-image: url("../assets/photos/background.jpg"); */
     min-height: 100vh;
     width:  100%;
 
@@ -7,4 +7,12 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    }
+}
+
+nav {
+    background-color: rgb(133, 193, 246);
+}
+
+.nav-link {
+    color: black;
+}
