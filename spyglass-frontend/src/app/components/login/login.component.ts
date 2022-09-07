@@ -16,7 +16,8 @@ export class LoginComponent implements OnInit {
   errorMessage = 'Invalid Credentials';
   successMessage: string = '';
   invalidLogin = false;
-  loginSuccess = false;
+  registerSuccess = false;
+  invalidUsername = false;
   user: User = new User();
 
   constructor(
@@ -33,12 +34,9 @@ export class LoginComponent implements OnInit {
       this.userService.registerSuccessfulLogin(this.username, this.password);
       
       this.invalidLogin = false;
-      this.loginSuccess = true;
-      this.successMessage = 'Login Successful.';
       this.router.navigate(['/home']);
     }, () => {
       this.invalidLogin = true;
-      this.loginSuccess = false;
     });
   }
 
@@ -47,11 +45,17 @@ export class LoginComponent implements OnInit {
   }
 
   save() {
-    console.log("saving")
     this.userService.register(this.user).subscribe(res => {
-      console.log("registered")
-    })
-    this.modalService.dismissAll;
+      this.modalService.dismissAll();
+      this.registerSuccess = true;
+      this.invalidUsername = false;
+      this.successMessage = 'New acount has been created. Please login to continue.';
+    }, () => {
+      console.log('username not available');
+      this.registerSuccess = false;
+      this.invalidUsername = true;
+    });
+    
   }
 
 }

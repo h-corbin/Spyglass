@@ -10,13 +10,11 @@ import { GoalsComponent } from './components/goals/goals.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { NewUserComponent } from './components/new-user/new-user.component';
 import { HttpInterceptorService } from './services/http-interceptor.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NewUserComponent,
     GoalsComponent,
     LoginComponent,
     HomeComponent,
