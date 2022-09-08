@@ -40,7 +40,6 @@ export class AccountComponent implements OnInit {
     } else {
       this.badPassword = true;
     }
-    
   }
 
   deleteAccount() {
@@ -48,6 +47,11 @@ export class AccountComponent implements OnInit {
       this.userService.deleteAccount();
       this.router.navigate(['/login']);
     }
+  }
+
+  logout() {
+    this.userService.logout();
+    this.router.navigate(['/login']);
   }
 
 }
