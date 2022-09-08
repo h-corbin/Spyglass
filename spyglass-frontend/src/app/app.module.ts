@@ -13,6 +13,7 @@ import { HttpInterceptorService } from './services/http-interceptor.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { NewGoalComponent } from './components/new-goal/new-goal.component';
+import { AccountComponent } from './components/account/account.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { NewGoalComponent } from './components/new-goal/new-goal.component';
     GoalsComponent,
     LoginComponent,
     HomeComponent,
-    NewGoalComponent
+    NewGoalComponent,
+    AccountComponent
   ],
   imports: [
     BrowserModule,

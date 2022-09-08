@@ -42,8 +42,21 @@ export class UserService{
     }); 
   }
 
-  register(user: User): Observable<User>{
+  register(user: User): Observable<User> {
     return this.http.post<User>(this.url, user);
+  }
+
+  getUser(): Observable<User> {
+    return this.http.get<User>(this.url);
+  }
+
+  updateAccount(user: User): Observable<User> {
+    return this.http.put<User>(this.url, user);
+  }
+
+
+  deleteAccount() {
+    this.http.delete(this.url).subscribe();
   }
 
 }

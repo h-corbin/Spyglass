@@ -1,0 +1,81 @@
+<h1> Account Details </h1>
+<div class="container text-center">
+<div class="row align-items-start">
+    <div class="card">
+        <div class="card-body">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    username: {{ user.username }}
+                </li>
+                <li class="list-group-item">
+                    first name: {{ user.firstName }}
+                </li>
+                <li class="list-group-item">
+                    last name: {{ user.lastName }}
+                </li>
+                <li class="list-group-item">
+                    email: {{ user.email }}
+                </li>
+            </ul>
+            <br />
+            <div class="d-grid gap-2">
+            <button
+                class="btn"
+                type="button"
+                (click)="open(updateModal)"
+            >
+                Edit
+            </button>
+            <button
+                class="btn btn-warning"
+                type="button"
+                (click)="deleteAccount()"
+            >
+                Delete acount
+            </button>
+            </div>
+        </div>
+        </div>
+    </div> 
+    <br />
+</div>
+
+
+
+<ng-template #updateModal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Edit</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div>
+        Username: {{ user.username }}
+    </div>
+    <div class="modal-body">
+      <form >
+        <div class="alert alert-warning" *ngIf='badPassword'>Incorrect Password</div>
+        <div>
+            <label for="oldPass">Old Password: </label>
+            <input id="oldPass" class="form-control" placeholder="name your goal" name="oldPass" type="text" [(ngModel)]=enteredPassword>
+        </div>
+        <div>
+            <label for="newPass">New Password: </label>
+            <input id="newPass" class="form-control" name="newPass" type="text" [(ngModel)]=user.password>
+        </div>
+        <div>
+            <label for="first">First Name: </label>
+            <input id="first" class="form-control" name="first" type="text" [(ngModel)]=user.firstName>
+        </div>
+        <div>
+            <label for="last">Last Name: </label>
+            <input id="last" class="form-control"  name="last" type="text" [(ngModel)]=user.lastName>
+        </div>
+        <div>
+            <label for="email">Email: </label>
+            <input type="text" id="email" class="form-control" name="email" [(ngModel)]=user.email>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="updateAccount()">Save Changes</button>
+    </div>
+  </ng-template>
