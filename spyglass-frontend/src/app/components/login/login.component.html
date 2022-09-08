@@ -1,21 +1,28 @@
-<div class="container col-lg-6">
-    <form class="form-group">
-        <div class="alert alert-warning" *ngIf='invalidLogin'>{{errorMessage}}</div>
-        <div class="alert alert-success" *ngIf='registerSuccess'>{{successMessage}}</div>
-        <div class="form-group">
-        <label for="usrname">User Name: </label>
-        <input type="text" class="form-control" id="username" [(ngModel)]="username" placeholder="Enter User Name"
-            name="username">
+<body>
+    <div class="row">
+        <div class="container col-md-4">
+            <form class="form-group">
+                <div class="alert alert-warning" *ngIf='invalidLogin'>{{errorMessage}}</div>
+                <div class="alert alert-success" *ngIf='registerSuccess'>{{successMessage}}</div>
+                <div class="form-group">
+                <input type="text" class="form-control" id="username" [(ngModel)]="username" placeholder="username"
+                    name="username">
+                </div>
+                <div class="form-group">
+                <input type="password" class="form-control" [(ngModel)]="password" id="password" placeholder="password"
+                    name="password">
+                </div>
+            </form>
+            <div class="button">
+                <button (click)=login() class="btn btn-success">Login</button>
+            </div>
+            <div class="button"> 
+                <button class="btn btn-secondary btn-sm" (click)="open(newUserModal)">New User</button> 
+            </div>
         </div>
-        <div class="form-group">
-        <label for="pwd">Password: </label>
-        <input type="password" class="form-control" [(ngModel)]="password" id="password" placeholder="Enter password"
-            name="password">
-        </div>
-        <button (click)=login() class="btn btn-success">Login</button>
-    </form>
-    <div> <button (click)="open(newUserModal)">New User</button> </div>
-</div>
+    </div>
+
+</body>
 
 
 <ng-template #newUserModal let-modal>

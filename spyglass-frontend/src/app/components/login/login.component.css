@@ -1,0 +1,16 @@
+body {
+    background-image: url("../../../assets/photos/savings.png");
+
+    background-position: center;
+    background-size: cover;
+}
+
+.form-group {
+    padding: 5px;
+}
+
+.button{
+    display: flex;
+    justify-content: center;
+    margin: 5px;
+}

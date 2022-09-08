@@ -17,7 +17,7 @@ export class NewGoalComponent implements OnInit {
     new GoalType("education", "../../assets/photos/education.png"),
     new GoalType("gifts", "../../assets/photos/gifts.png"),
     new GoalType("house", "../../assets/photos/house.png"),
-    new GoalType("rainy day", "../../assets/photos/savings.png"),
+    new GoalType("rainy day", "../../assets/photos/money.png"),
     new GoalType("retirement", "../../assets/photos/retirement.png"),
     new GoalType("travel", "../../assets/photos/travel.jpg"),
     new GoalType("other", "../../assets/photos/savings2.jpg")

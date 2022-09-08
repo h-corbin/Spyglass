@@ -1,18 +1,19 @@
-body { 
-    /* background-image: url("../assets/photos/background.jpg"); */
-    min-height: 100vh;
-    width:  100%;
-
-
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
 
 nav {
-    background-color: rgb(133, 193, 246);
+    background-color: #44c5e5;
+    padding-left: 15px;
 }
 
 .nav-link {
     color: black;
+}
+
+#outlet {
+    height: 100%
+}
+
+#logo {
+    font-weight: bold;
+    font-size: xx-large;
+    font-family:Verdana, Geneva, Tahoma, sans-serif
 }
