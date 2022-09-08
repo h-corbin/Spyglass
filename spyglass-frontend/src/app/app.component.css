@@ -4,6 +4,10 @@ nav {
     padding-left: 15px;
 }
 
+.navbar {
+    overflow: visible;
+}
+
 .nav-link {
     color: black;
 }
@@ -20,4 +24,43 @@ nav {
 
 #navbarNavAltMarkup {
     margin-left: 2em;
+}
+
+.navbar a {
+    color: black;
+    float: left;
+    font-size: 16px;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.dropdown {
+    float: left;
+    font-size: 16px;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #44c5e5;
+}
+
+.dropdown-content a {
+    float: none;
+    display: block;
+    text-align: left;
+    padding: 8px;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
 }
