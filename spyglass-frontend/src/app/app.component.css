@@ -17,3 +17,7 @@ nav {
     font-size: xx-large;
     font-family:Verdana, Geneva, Tahoma, sans-serif
 }
+
+#navbarNavAltMarkup {
+    margin-left: 2em;
+}
