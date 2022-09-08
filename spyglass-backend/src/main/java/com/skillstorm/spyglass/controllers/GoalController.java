@@ -52,8 +52,11 @@ public class GoalController {
 	}
 	
 	@PutMapping("/{id}/{username}")
-	public Goal newUser(Principal principal, @PathVariable int id, @PathVariable String username) {
-		return goalService.addUser(id, principal.getName(), username);
+	public ResponseEntity<Goal> newUser(Principal principal, @PathVariable int id, @PathVariable String username) {
+		Goal goal = goalService.addUser(id, principal.getName(), username);
+		return goal != null ? 
+				new ResponseEntity<Goal>(goal, HttpStatus.CREATED)
+				: new ResponseEntity<Goal>(goal, HttpStatus.BAD_REQUEST);
 	}
 	
 	@DeleteMapping("/{id}")

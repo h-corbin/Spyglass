@@ -19,7 +19,20 @@ export class GoalsService {
     return this.http.post<Goal>(this.url, goal);
   }
 
+  updateGoal(goal: Goal) :Observable<any>{
+    goal.users = [];
+    return this.http.put(this.url+goal.goalId, goal);
+  }
+
+  addPartner(goal: Goal, username: String) :Observable<any>{
+    return this.http.put(this.url+goal.goalId+"/"+username, goal);
+  }
+
   deleteGoal(goal: Goal) :Observable<any>{
     return this.http.delete(this.url+goal.goalId);
+  }
+
+  deleteAllGoals() :Observable<any>{
+    return this.http.delete(this.url);
   }
 }
