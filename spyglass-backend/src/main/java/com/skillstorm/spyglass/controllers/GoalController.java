@@ -1,5 +1,6 @@
 package com.skillstorm.spyglass.controllers;
 
+import java.io.IOException;
 import java.security.Principal;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,11 +18,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.skillstorm.spyglass.models.Goal;
 import com.skillstorm.spyglass.services.GoalService;
+import com.skillstorm.spyglass.services.ImageService;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -70,4 +75,13 @@ public class GoalController {
 	public void deleteAllGoals(Principal principal) {
 		goalService.deleteAllGoals(principal.getName());
 	}
+	
+	@PostMapping("/image")
+    public void saveImage(@RequestParam("file") MultipartFile multipartFile) throws IOException {
+        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+        String uploadDir = "../spyglass-frontend/src/assets/uploaded_photos";
+        ImageService.save(uploadDir, fileName, multipartFile);
+    }
+	
+	
 }

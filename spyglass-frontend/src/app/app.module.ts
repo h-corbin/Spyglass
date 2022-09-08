@@ -12,6 +12,7 @@ import { LoginComponent } from './components/login/login.component';
 import { HttpInterceptorService } from './services/http-interceptor.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatIconModule } from '@angular/material/icon';
 import { NewGoalComponent } from './components/new-goal/new-goal.component';
 import { AccountComponent } from './components/account/account.component';
 
@@ -31,7 +32,8 @@ import { AccountComponent } from './components/account/account.component';
     NgbModule,
     FormsModule,
     BrowserAnimationsModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatIconModule
   ],
   providers: [
     {

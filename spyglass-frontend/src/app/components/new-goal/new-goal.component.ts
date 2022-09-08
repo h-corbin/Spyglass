@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ChildActivationStart, Router } from '@angular/router';
 import { Goal } from 'src/app/models/goal';
 import { GoalType } from 'src/app/models/goalType';
 import { GoalsService } from 'src/app/services/goals.service';
@@ -22,8 +22,12 @@ export class NewGoalComponent implements OnInit {
     new GoalType("travel", "../../assets/photos/travel.jpg"),
     new GoalType("other", "../../assets/photos/savings2.jpg")
   ]
-  selectedType :GoalType = new GoalType("","");
+  selected = false;
+  selectedType: GoalType = new GoalType("","");
+  goalImage: String = ''; 
   newGoalFailed = false;
+  fileName = '';
+  message? :String;
 
   constructor(
     public router: Router,
@@ -41,6 +45,19 @@ export class NewGoalComponent implements OnInit {
     }, () => {
       this.newGoalFailed = true;
     });
+  }
+
+  onTypeSelect() {
+    this.selected = true;
+    this.goalImage = this.selectedType.image;
+  }
+
+  onFileSelect(event :any) {
+    const file:File = event.target.files[0];
+    if (file) {
+        this.goalService.uploadImage(file);
+        this.goalImage = "../../../assets/uploaded_photos/" + file.name;
+    }
   }
 
 }

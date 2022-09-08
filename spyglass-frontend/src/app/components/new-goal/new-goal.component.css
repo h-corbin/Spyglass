@@ -1,3 +1,7 @@
 .card {
     width:25em;
 }
+
+.file-input {
+    display: none;
+}

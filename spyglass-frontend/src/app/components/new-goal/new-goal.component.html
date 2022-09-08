@@ -4,16 +4,36 @@
             <h1 class="display-6">New Goal</h1>
             <div class="alert alert-warning" *ngIf='newGoalFailed'>Error</div>
             <div class="card">
+                <div class="container row">
+                    <div class="col-md-12">
+                        <div *ngIf=message>{{message}}</div>
+                    </div>
+                </div>
+
                 <img class="image"
-                  src="{{ selectedType.image }}"
+                  src="{{goalImage}}"
                 />
-    
+                <div *ngIf="selected">
+                    <input type="file" class="file-input" accept="image/png, image/jpeg" (change)="onFileSelect($event)" #fileUpload>
+                <div class="file-upload">
+
+                    {{fileName || "Upload your own image"}}
+                 
+                     <button mat-mini-fab color="primary" class="upload-btn"
+                       (click)="fileUpload.click()">
+                         <mat-icon>add_a_photo_alternate</mat-icon>
+                     </button>
+                </div>
+                </div>
+                
+
                 <div>
                     <label for="typeSelect" class="form-label">What are you saving for?</label>
-                    <select id="typeSelect" #typeSelect name="typeSelect" class="form-control" [(ngModel)]="selectedType">
+                    <select id="typeSelect" #typeSelect name="typeSelect" class="form-control" [(ngModel)]="selectedType" (ngModelChange)="onTypeSelect()">
                         <option *ngFor="let type of typeList" [ngValue]="type">{{type.type}}</option>
                     </select>
                 </div>
+
                 <div>
                     <label for="name">Goal Name: </label>
                     <input id="name" class="form-control" placeholder="name your goal" name="name" type="text" [(ngModel)]=goal.name>

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Goal } from 'src/app/models/goal';
 
@@ -35,4 +35,16 @@ export class GoalsService {
   deleteAllGoals() :Observable<any>{
     return this.http.delete(this.url);
   }
+
+  uploadImage(file: File) {
+    const data: FormData = new FormData();
+    data.append('file', file);
+
+    const newRequest = new HttpRequest('POST', this.url+"image", data, {
+    reportProgress: true,
+    responseType: 'text'
+    });
+
+    this.http.request(newRequest).subscribe();
+  } 
 }
