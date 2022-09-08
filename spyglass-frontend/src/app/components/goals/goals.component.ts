@@ -17,6 +17,7 @@ export class GoalsComponent implements OnInit {
   editGoal = new Goal();
   updateGoalFailed = false;
   newPartner: String = "";
+  noGoals = true;
 
   constructor(
     public router: Router,
@@ -63,16 +64,21 @@ export class GoalsComponent implements OnInit {
   private getAllGoals() {
     this.goalService.getAllGoals().subscribe( res => {
       this.goalList = res;
-      for (var goal of this.goalList) {
-        goal.progress = 100 * (goal.currentAmount / goal.targetAmount);
-        if (goal.users.length == 1) {
-          this.displayPartners = false;
-        } else {
-          this.displayPartners = true;
-          const index = goal.users.indexOf(this.userService.username, 0);
-          if (index > -1) {
-            goal.users.splice(index, 1);
-}
+      if (this.goalList.length == 0) {
+        this.noGoals = true;
+      } else {
+        this.noGoals = false;
+        for (var goal of this.goalList) {
+          goal.progress = 100 * (goal.currentAmount / goal.targetAmount);
+          if (goal.users.length == 1) {
+            this.displayPartners = false;
+          } else {
+            this.displayPartners = true;
+            const index = goal.users.indexOf(this.userService.username, 0);
+            if (index > -1) {
+              goal.users.splice(index, 1);
+            }
+          }
         }
       }
     })
