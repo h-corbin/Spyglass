@@ -14,6 +14,10 @@ export class UserService{
   public username :string = '';
   public password :string = '';
   public loggedIn = false;
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type':  'application/json'
+    }), };
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -43,7 +47,7 @@ export class UserService{
   }
 
   register(user: User): Observable<User> {
-    return this.http.post<User>(this.url, user);
+    return this.http.post<User>(this.url, user, this.httpOptions);
   }
 
   getUser(): Observable<User> {
@@ -51,7 +55,7 @@ export class UserService{
   }
 
   updateAccount(user: User): Observable<User> {
-    return this.http.put<User>(this.url, user);
+    return this.http.put<User>(this.url, user, this.httpOptions);
   }
 
 
