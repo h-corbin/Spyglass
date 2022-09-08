@@ -1,7 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { map, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { User } from '../models/user';
 
 @Injectable({
@@ -19,7 +18,7 @@ export class UserService{
       'Content-Type':  'application/json'
     }), };
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient) { }
 
   authenticate(username: string, password: string): Observable<any> {
     let httpOptions = {
@@ -42,7 +41,6 @@ export class UserService{
       this.loggedIn = false;
       this.username = '';
       this.password = '';
-      this.router.navigate(['/login']);
     }); 
   }
 
@@ -57,8 +55,7 @@ export class UserService{
   updateAccount(user: User): Observable<User> {
     return this.http.put<User>(this.url, user, this.httpOptions);
   }
-
-
+  
   deleteAccount() {
     this.http.delete(this.url).subscribe();
   }

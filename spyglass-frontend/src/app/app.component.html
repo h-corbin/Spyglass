@@ -13,15 +13,15 @@
       >
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup" *ngIf="isLoggedIn()">
-        <div class="navbar">
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar ms-auto">
           <a routerLink="/home">Home</a>
           <a routerLink="/new-goal">New Goal</a>
           <div class="dropdown">
             <div> My Account </div>
             <div class="dropdown-content">
               <a routerLink="/account">Account</a>
-              <a routerLink="/login">Logout</a>
+              <a routerLink="/login" (click)="logout()">Logout</a>
             </div>
           </div>
         </div>
