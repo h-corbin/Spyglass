@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skillstorm.spyglass.models.User;
+import com.skillstorm.spyglass.models.UserDTO;
 import com.skillstorm.spyglass.services.UserService;
 
 @CrossOrigin(origins = "http://localhost:4200")
@@ -34,22 +35,24 @@ public class UserController {
 	}
 
 	@GetMapping
-	public User getUser(Principal principal) {
-		return userService.findById(principal.getName());
+	public UserDTO getUser(Principal principal) {
+		User user = userService.findById(principal.getName());
+		return UserDTO.convertToDTO(user);
 	}
 	
 	@PostMapping
-	public ResponseEntity<User> newUser(@Valid @RequestBody User user) {
+	public ResponseEntity<UserDTO> newUser(@Valid @RequestBody User user) {
 		User newUser = userService.save(user);
 		return newUser != null ? 
-				new ResponseEntity<User>(newUser, HttpStatus.CREATED)
-				: new ResponseEntity<User>(newUser, HttpStatus.BAD_REQUEST);
+				new ResponseEntity<UserDTO>(UserDTO.convertToDTO(newUser), HttpStatus.CREATED)
+				: new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 	}
 	
 	@PutMapping
-	public User update(Principal principal, @Valid @RequestBody User user) {
+	public UserDTO update(Principal principal, @Valid @RequestBody User user) {
 		user.setUsername(principal.getName());
-		return userService.update(user, principal.getName());
+		user = userService.update(user, principal.getName());
+		return UserDTO.convertToDTO(user);
 	}
 	
 	@DeleteMapping
