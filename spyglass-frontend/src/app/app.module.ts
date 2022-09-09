@@ -13,6 +13,8 @@ import { HttpInterceptorService } from './services/http-interceptor.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { NewGoalComponent } from './components/new-goal/new-goal.component';
 import { AccountComponent } from './components/account/account.component';
 
@@ -33,7 +35,9 @@ import { AccountComponent } from './components/account/account.component';
     FormsModule,
     BrowserAnimationsModule,
     MatProgressBarModule,
-    MatIconModule
+    MatIconModule,
+    MatFormFieldModule,
+    MatDatepickerModule
   ],
   providers: [
     {

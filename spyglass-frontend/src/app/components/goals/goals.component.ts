@@ -30,6 +30,10 @@ export class GoalsComponent implements OnInit {
     this.getAllGoals();
   }
 
+  ngOnChanges(): void {
+    this.getAllGoals();
+  }
+
   open(modal: any, goal: Goal) {
     this.editGoal = goal;
     this.modalService.open(modal);
@@ -61,7 +65,7 @@ export class GoalsComponent implements OnInit {
     });
   }
 
-  private getAllGoals() {
+  getAllGoals() {
     this.goalService.getAllGoals().subscribe( res => {
       this.goalList = res;
       if (this.goalList.length == 0) {

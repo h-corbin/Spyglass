@@ -1,5 +1,5 @@
 <div *ngIf="noGoals">
-  <app-new-goal></app-new-goal>
+  <app-new-goal (submitted)="getAllGoals()"></app-new-goal>
 </div>
 
 <div *ngIf="!noGoals"> 

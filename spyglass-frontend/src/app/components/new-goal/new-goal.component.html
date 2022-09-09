@@ -1,62 +1,81 @@
-<div class="container col-lg-6">
-    <div class="card-body">
-        <form (ngSubmit)="onSubmit()">
-            <h1 class="display-6">New Goal</h1>
-            <div class="alert alert-warning" *ngIf='newGoalFailed'>Error</div>
-            <div class="card">
-                <div class="container row">
-                    <div class="col-md-12">
-                        <div *ngIf=message>{{message}}</div>
-                    </div>
-                </div>
-
-                <img class="image"
-                  src="{{goalImage}}"
-                />
-                <div *ngIf="selected">
-                    <input type="file" class="file-input" accept="image/png, image/jpeg" (change)="onFileSelect($event)" #fileUpload>
+<div class="container col-lg-4">
+    <form class="form-group" (ngSubmit)="onSubmit()"> 
+        <h1>Create a New Goal</h1>
+        <div class="alert alert-warning" *ngIf='newGoalFailed'>Error</div>
+        <div class="form-group">
+            <img class="image"
+                src="{{goalImage}}"
+            />
+            <div *ngIf="selected">
+                <input type="file" class="file-input" accept="image/png, image/jpeg" (change)="onFileSelect($event)" #fileUpload>
                 <div class="file-upload">
 
                     {{fileName || "Upload your own image"}}
-                 
-                     <button mat-mini-fab color="primary" class="upload-btn"
-                       (click)="fileUpload.click()">
-                         <mat-icon>add_a_photo_alternate</mat-icon>
-                     </button>
+                    
+                        <button mat-mini-fab color="primary" class="upload-btn"
+                        (click)="fileUpload.click()">
+                            <mat-icon>add_a_photo_alternate</mat-icon>
+                        </button>
                 </div>
-                </div>
-                
+            </div>
+        </div>
 
-                <div>
-                    <label for="typeSelect" class="form-label">What are you saving for?</label>
-                    <select id="typeSelect" #typeSelect name="typeSelect" class="form-control" [(ngModel)]="selectedType" (ngModelChange)="onTypeSelect()">
-                        <option *ngFor="let type of typeList" [ngValue]="type">{{type.type}}</option>
-                    </select>
+        <div>
+            <div class="form-group row">
+                <div id="typeSelector">
+                    <select id="typeSelect" #typeSelect name="typeSelect" class="form-control" (change)="onTypeSelect($any($event.target).value)">
+                        <option value="" disabled selected>Choose a goal type</option>
+                        <option *ngFor="let type of typeList" [ngValue]="type">{{ type }}</option>
+                    </select> 
                 </div>
-
-                <div>
-                    <label for="name">Goal Name: </label>
-                    <input id="name" class="form-control" placeholder="name your goal" name="name" type="text" [(ngModel)]=goal.name>
-                </div>
-                <div>
-                    <label for="description">Description: </label>
-                    <input id="description" class="form-control" name="description" type="text" [(ngModel)]=goal.description>
-                </div>
-                <div>
-                    <label for="target">Target Amount: </label>
-                    <input id="target" class="form-control" name="target" type="text" [(ngModel)]=goal.targetAmount>
-                </div>
-                <div>
-                    <label for="current">Current Amount: </label>
-                    <input id="current" class="form-control"  name="current" type="text" [(ngModel)]=goal.currentAmount>
-                </div>
-                <div>
-                    <label for="date">Target Date: </label>
-                    <input type="date" id="date" class="form-control" name="date" [(ngModel)]=goal.targetDate>
+                <div id="dropdown">
+                    <mat-icon matSuffix>arrow_drop_down</mat-icon>
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-outline-dark">Submit</button>
-        </form>
-    </div>
+        </div>
+        
+       
+
+        <div class="form-group">
+            <label for="name">Goal Name: </label>
+            <input id="name" class="form-control" placeholder="name your goal" name="name" type="text" [(ngModel)]=goal.name>
+        </div>
+        <div class="form-group">
+            <label for="description">Description: </label>
+            <input id="description" class="form-control" name="description" type="text" [(ngModel)]=goal.description>
+        </div>
+
+        <div class="amounts">
+            <div class="form-group inputAmount">
+                <label for="target">Target Amount: </label>
+                <div>
+                    <span class="selecAmmount">
+                        <input id="target" class="form-control dollar" name="target" type="text" [(ngModel)]=goal.targetAmount placeholder="0.00">
+                    </span>
+                </div>
+            </div>
+            <div class="form-group inputAmount">
+                <label for="current">Current Amount: </label>
+                <div>
+                    <span class="selectAmount">
+                        <input id="current" class="form-control dollar"  name="current" type="text" [(ngModel)]=goal.currentAmount placeholder="0.00">
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="amounts">
+            <div class="form-group dateForm">
+                <label for="date">Target Date: </label>
+                <input type="date" id="date" class="form-control" name="date" [(ngModel)]=goal.targetDate>
+                <div></div>
+            </div>
+        </div>
+        
+        
+
+        <div class="form-group button">
+            <button type="submit" class="btn btn-success">Submit</button>
+        </div>
+    </form>
 </div>
