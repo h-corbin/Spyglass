@@ -90,29 +90,41 @@
 
 <ng-template #updateModal let-modal>
   <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Edit this Goal</h4>
+      <h2 class="modal-title" id="modal-basic-title">Edit this Goal</h2>
       <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
   </div>
   <div class="modal-body">
-    <form >
+    <form class="edit-form">
       <div class="alert alert-warning" *ngIf='updateGoalFailed'>Error</div>
-      <div>
+      <div class="mb-3">
           <label for="name">Goal Name: </label>
-          <input id="name" class="form-control" placeholder="name your goal" name="name" type="text" [(ngModel)]=editGoal.name>
+          <input id="name" class="form-control" name="name" type="text" [(ngModel)]=editGoal.name>
       </div>
-      <div>
+      <div class="mb-3">
           <label for="description">Description: </label>
           <input id="description" class="form-control" name="description" type="text" [(ngModel)]=editGoal.description>
       </div>
-      <div>
+      
+      <div class="amounts">
+        <div class="mb-3 inputAmount">
           <label for="target">Target Amount: </label>
-          <input id="target" class="form-control" name="target" type="number" [(ngModel)]=editGoal.targetAmount>
+          <div>
+            <span class="selecAmmount">
+              <input id="target" class="form-control dollar" name="target" type="text" [(ngModel)]=editGoal.targetAmount>
+            </span>
+          </div>
+        </div>
+        <div class="mb-3 inputAmount">
+            <label for="current">Current Amount: </label>
+            <div>
+              <span class="selecAmmount">
+                <input id="current" class="form-control dollar"  name="current" type="text" [(ngModel)]=editGoal.currentAmount>
+              </span>
+            </div>
+        </div>
       </div>
-      <div>
-          <label for="current">Current Amount: </label>
-          <input id="current" class="form-control"  name="current" type="number" [(ngModel)]=editGoal.currentAmount>
-      </div>
-      <div>
+
+      <div class="mb-3">
           <label for="date">Target Date: </label>
           <input type="date" id="date" class="form-control" name="date" [(ngModel)]=editGoal.targetDate>
       </div>

@@ -26,3 +26,38 @@ li {
 .bottom-buttons {
     justify-content: end;
 }
+
+.form-group {
+    padding: 5px;
+}
+
+.button{
+    display: flex;
+    justify-content: center;
+    margin: 5px;
+}
+
+.dollar {
+    padding-left: 15px;
+    width: 100%;
+
+}
+
+.amounts {
+    display: flex;
+    justify-content: space-between;
+}
+
+span {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+}
+
+span::before{
+    content: "$";
+    position: absolute;
+    left: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+}
