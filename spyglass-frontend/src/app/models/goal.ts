@@ -8,4 +8,5 @@ export class Goal {
     currentAmount : number = 0.0;
     progress? : number = 0.0;
     users : Array<String> = [];
+    displayPartners = false;
 }

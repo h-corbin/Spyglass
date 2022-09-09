@@ -1,66 +1,62 @@
-<h2>
-  Your Goals: 
-</h2>
-<div *ngIf="noGoals">
-  <app-new-goal (submitted)="getAllGoals()"></app-new-goal>
-</div>
 
 <div *ngIf="!noGoals"> 
   <div class="container text-center">
-    <div class="row align-items-start">
-      <div class="col-4" *ngFor="let goal of goalList">
+    <h1>Your Goals</h1>
+  </div>
+  
+  <div class="container text-center">
+    <div class="row flexGoals">
+      <div class="col-4 d-flex align-items-stretch" *ngFor="let goal of goalList">
         <div class="card">
-          <h2 class="card-title text-center">{{ goal.name }}</h2>
-          <div class="card">
+          <div class="card-body d-flex flex-column">
+            <h2 class="card-title text-center">{{ goal.name }}</h2>
             <img
               src="{{ goal.picture }}"
               class="card-img-top"
             />
-            <div class="card-body">
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item">{{ goal.description }}</li>
-                <li class="list-group-item">
-                  target date: {{ goal.targetDate }}
-                </li>
-                <li class="list-group-item">
-                  target amount: ${{ goal.targetAmount }}
-                </li>
-                <li class="list-group-item">
-                    current amount: ${{ goal.currentAmount }}
-                </li>
-                <li class="list-group-item">
-                    progress: {{ goal.progress }}%
-                    <mat-progress-bar mode="determinate" value="{{ goal.progress }}"></mat-progress-bar>
-                </li>
-                <li class="list-group-item" *ngIf="displayPartners">
-                  partners: {{ goal.users }}
-                </li>
-                
-              </ul>
-              <br />
-              <div class="d-grid gap-2">
-                <button
-                  class="btn"
-                  type="button"
-                  (click)="open(updateModal, goal)"
-                >
-                  Edit
-                </button>
-                <button
-                  class="btn"
-                  type="button"
-                  (click)="open(partnerModal, goal)"
-                >
-                  Add a Partner
-                </button>
-                <button
-                  class="btn btn-warning"
-                  type="button"
-                  (click)="delete(goal)"
-                >
-                  Delete this goal
-                </button>
-              </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">{{ goal.description }}</li>
+              <li class="list-group-item">
+                target date: {{ goal.targetDate }}
+              </li>
+              <li class="list-group-item">
+                target amount: ${{ goal.targetAmount }}
+              </li>
+              <li class="list-group-item">
+                  current amount: ${{ goal.currentAmount }}
+              </li>
+              <li class="list-group-item">
+                  progress: {{ goal.progress }}%
+                  <mat-progress-bar mode="determinate" value="{{ goal.progress }}"></mat-progress-bar>
+              </li>
+              <li class="list-group-item" *ngIf="goal.displayPartners">
+                partners: {{ goal.users }}
+              </li>
+              
+            </ul>
+            <br />
+            <div class="d-grid gap-2 mt-auto">
+              <button
+                class="btn btn-success"
+                type="button"
+                (click)="open(updateModal, goal)"
+              >
+                Edit
+              </button>
+              <button
+                class="btn btn-primary"
+                type="button"
+                (click)="open(partnerModal, goal)"
+              >
+                Add a Partner
+              </button>
+              <button
+                class="btn btn-danger"
+                type="button"
+                (click)="delete(goal)"
+              >
+                Delete this goal
+              </button>
             </div>
           </div>
         </div> 
@@ -74,13 +70,11 @@
 
 <ng-template #partnerModal let-modal>
   <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Invite a Parnter</h4>
-      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    <h4 class="modal-title" id="modal-basic-title">Invite a Partner</h4>
+    <button type="button" class="btn-close" (click)="modal.dismiss('Cross click')"></button>
   </div>
   <div class="modal-body">
-    <div>
-      Add a partner to this goal. The goal will show up in their list of goal. They will be able to edit and contribute savings toward this goal.
-    </div>
+    <div class="message">Add another Spyglass user to this goal. Your goal will also show up in their list of goals. As your partner, they will be able to edit and contribute savings toward this goal.</div>
     <div class="alert alert-warning" *ngIf='updateGoalFailed'>Unable to add this user.</div>
     <div>
       <label for="partner">Partner's username: </label>
@@ -88,7 +82,7 @@
     </div>
   </div>
   <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="invite(editGoal, newPartner)">Invite</button>
+      <button type="button" class="btn btn-success" (click)="invite(editGoal, newPartner)">Invite</button>
   </div>
 </ng-template>
 
@@ -125,6 +119,6 @@
     </form>
   </div>
   <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="update(editGoal)">Save</button>
+      <button type="button" class="btn btn-success" (click)="update(editGoal)">Save</button>
   </div>
 </ng-template>

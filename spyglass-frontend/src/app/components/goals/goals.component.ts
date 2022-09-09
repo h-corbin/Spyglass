@@ -13,11 +13,10 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class GoalsComponent implements OnInit {
   goalList: Array<Goal> = [];
-  displayPartners = false;
   editGoal = new Goal();
   updateGoalFailed = false;
   newPartner: String = "";
-  noGoals = false;
+  noGoals = true;
 
   constructor(
     public router: Router,
@@ -70,14 +69,15 @@ export class GoalsComponent implements OnInit {
       this.goalList = res;
       if (this.goalList.length == 0) {
         this.noGoals = true;
+        this.router.navigate(['/new-goal']);
       } else {
         this.noGoals = false;
         for (var goal of this.goalList) {
           goal.progress = 100 * (goal.currentAmount / goal.targetAmount);
           if (goal.users.length == 1) {
-            this.displayPartners = false;
+            goal.displayPartners = false;
           } else {
-            this.displayPartners = true;
+            goal.displayPartners = true;
             const index = goal.users.indexOf(this.userService.username, 0);
             if (index > -1) {
               goal.users.splice(index, 1);
@@ -85,11 +85,7 @@ export class GoalsComponent implements OnInit {
           }
         }
       }
-    }, 
-    () => {
-      this.noGoals = true;
-    })
+    });
   }
-
 }
  

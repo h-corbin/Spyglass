@@ -1,3 +1,28 @@
 .card {
     background-color: #FAD6D9;
 }
+
+.card-body {
+    margin: 10px;
+    margin-top: none;
+}
+
+li {
+    background-color: #FAD6D9;
+}
+
+.modal-footer{
+    justify-content: center;
+}
+
+.modal-title {
+    text-align: center;
+}
+
+.message {
+    margin-bottom: 10px;
+}
+
+.bottom-buttons {
+    justify-content: end;
+}
