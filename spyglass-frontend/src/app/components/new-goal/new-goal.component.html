@@ -39,29 +39,31 @@
                 
                
         
-                <div class="form-group">
+                <div class="form-group" [formGroup]="goalForm">
                     <label for="name">Goal Name: </label>
-                    <input id="name" class="form-control" placeholder="name your goal" name="name" type="text" [(ngModel)]=goal.name>
+                    <small *ngIf="goalForm.get('name')?.errors?.['required']" class="text-danger">   *</small>
+                    <input id="name" class="form-control" placeholder="name your goal" formControlName="name" type="text">
                 </div>
-                <div class="form-group">
+                <div class="form-group" [formGroup]="goalForm">
                     <label for="description">Description: </label>
-                    <input id="description" class="form-control" name="description" type="text" [(ngModel)]=goal.description>
+                    <input id="description" class="form-control" formControlName="description" type="text">
                 </div>
         
                 <div class="amounts">
-                    <div class="form-group inputAmount">
+                    <div class="form-group inputAmount" [formGroup]="goalForm">
                         <label for="target">Target Amount: </label>
+                        <small *ngIf="goalForm.get('name')?.errors?.['required']" class="text-danger">   *</small>
                         <div>
                             <span class="selecAmmount">
-                                <input id="target" class="form-control dollar" name="target" type="text" [(ngModel)]=goal.targetAmount placeholder="0.00" appTwoDigitDecimalNumber>
+                                <input id="target" class="form-control dollar" formControlName="targetAmount" type="text" placeholder="0.00" appTwoDigitDecimalNumber>
                             </span>
                         </div>
                     </div>
-                    <div class="form-group inputAmount">
+                    <div class="form-group inputAmount" [formGroup]="goalForm">
                         <label for="current">Current Amount: </label>
                         <div>
                             <span class="selectAmount">
-                                <input id="current" class="form-control dollar"  name="current" type="text" [(ngModel)]=goal.currentAmount placeholder="0.00" appTwoDigitDecimalNumber>
+                                <input id="current" class="form-control dollar"  formControlName="currentAmount" type="text" placeholder="0.00" appTwoDigitDecimalNumber>
                             </span>
                         </div>
                     </div>
@@ -69,7 +71,7 @@
                 <div class="amounts">
                     <div class="form-group dateForm">
                         <label for="date">Target Date: </label>
-                        <input type="date" id="date" class="form-control" name="date" [(ngModel)]=goal.targetDate>
+                        <input type="date" id="date" class="form-control" name="targetDate" [(ngModel)]=goal.targetDate>
                         <div></div>
                     </div>
                 </div>

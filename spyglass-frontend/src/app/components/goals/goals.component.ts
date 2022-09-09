@@ -83,8 +83,9 @@ export class GoalsComponent implements OnInit {
               goal.progress = 0;
             }
           }
-          
-          goal.targetDate = formatDate(goal.targetDate, this.format, this.locale);
+          if (typeof goal.targetDate !== 'undefined') {
+            goal.targetDate = formatDate(goal.targetDate, this.format, this.locale);
+          }
           if (goal.users.length == 1) {
             goal.displayPartners = false;
           } else {

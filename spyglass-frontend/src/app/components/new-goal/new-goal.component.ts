@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Form, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Goal } from 'src/app/models/goal';
 import { GoalType } from 'src/app/models/goalType';
@@ -11,6 +12,7 @@ import { GoalsService } from 'src/app/services/goals.service';
 })
 export class NewGoalComponent implements OnInit {
 
+  goalForm: FormGroup = new FormGroup({});
   goal: Goal = new Goal();
   typeList: Array<String> = ["car", "education", "gifts", "house", "rainy day", "retirement", "travel", "other"];
   selected = false;
@@ -26,9 +28,19 @@ export class NewGoalComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.goalForm = new FormGroup({
+      name: new FormControl('', [Validators.required]),
+      description: new FormControl(''),
+      targetAmount: new FormControl(0.00, Validators.required),
+      currentAmount: new FormControl(0.00)
+    });
   }
 
   onSubmit() {
+    this.goal.name = this.goalForm.value.name;
+    this.goal.description = this.goalForm.value.description;
+    this.goal.targetAmount = this.goalForm.value.targetAmount;
+    this.goal.currentAmount = this.goalForm.value.currentAmount;
     this.goal.picture = this.goalImage;
     this.goalService.newGoal(this.goal).subscribe(res => {
       this.newGoalFailed = false;
