@@ -58,6 +58,7 @@ public class UserServiceImpl implements UserService{
 	public User update(@Valid User user, String name) {
 		// in case they changed the password
 		user.setPassword(encoder.encode(user.getPassword()));
+		user.setEnabled(true);
 		return userRepository.save(user);
 	}
 

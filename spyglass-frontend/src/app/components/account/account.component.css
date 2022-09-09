@@ -1,3 +1,10 @@
+body {
+    background-color: #caeff4;
+    background-image: url("../../../assets/photos/background_savings.jpg");
+    background-position: center;
+    background-size: cover;
+}
+
 .accountBox {
     display: flex;
     justify-content: space-between;
@@ -5,4 +12,16 @@
 
 h1 {
     text-align: center;
+}
+
+.modal-footer{
+    justify-content: center;
+}
+
+.modal-title {
+    text-align: center;
+}
+
+.form-group {
+    padding: 5px;
 }

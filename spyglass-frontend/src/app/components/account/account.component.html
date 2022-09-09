@@ -45,38 +45,40 @@
 
 <ng-template #updateModal let-modal>
     <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Edit</h4>
+        <h2 class="modal-title" id="modal-basic-title">Edit Your Account Details</h2>
         <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
     </div>
-    <div>
-        Username: {{ user.username }}
-    </div>
+    
     <div class="modal-body">
-      <form >
-        <div class="alert alert-warning" *ngIf='badPassword'>Incorrect Password</div>
+      <form class="edit-form">
         <div>
-            <label for="oldPass">Old Password: </label>
-            <input id="oldPass" class="form-control" placeholder="name your goal" name="oldPass" type="text" [(ngModel)]=enteredPassword>
+            Username: {{ user.username }}
         </div>
-        <div>
+        <br>
+        <div class="alert alert-warning" *ngIf='badPassword'>Incorrect Password</div>
+        <div class="mb-3">
+            <label for="oldPass">Old Password: </label>
+            <input id="oldPass" class="form-control" placeholder="Enter your password to make changes" name="oldPass" type="text" [(ngModel)]=enteredPassword>
+        </div>
+        <div class="mb-3">
             <label for="newPass">New Password: </label>
             <input id="newPass" class="form-control" name="newPass" type="text" [(ngModel)]=user.password>
         </div>
-        <div>
+        <div class="mb-3">
             <label for="first">First Name: </label>
             <input id="first" class="form-control" name="first" type="text" [(ngModel)]=user.firstName>
         </div>
-        <div>
+        <div class="mb-3">
             <label for="last">Last Name: </label>
             <input id="last" class="form-control"  name="last" type="text" [(ngModel)]=user.lastName>
         </div>
-        <div>
+        <div class="mb-3">
             <label for="email">Email: </label>
             <input type="text" id="email" class="form-control" name="email" [(ngModel)]=user.email>
         </div>
       </form>
     </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark" (click)="updateAccount()">Save Changes</button>
+    <div class="modal-footer" >
+        <button type="button" class="btn btn-success" (click)="updateAccount()">Save Changes</button>
     </div>
   </ng-template>
