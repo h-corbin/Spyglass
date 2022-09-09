@@ -2,8 +2,6 @@ body {
     background-image: url("../../../assets/photos/background.jpg");
     background-position: center;
     background-size: cover;
-
-    overflow-x: hidden;
 }
 
 .loginStuff {

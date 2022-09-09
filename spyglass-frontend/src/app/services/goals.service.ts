@@ -36,7 +36,7 @@ export class GoalsService {
     return this.http.delete(this.url);
   }
 
-  uploadImage(file: File) {
+  uploadImage(file: File) :Observable<any> {
     const data: FormData = new FormData();
     data.append('file', file);
 
@@ -45,6 +45,6 @@ export class GoalsService {
     responseType: 'text'
     });
 
-    this.http.request(newRequest).subscribe();
+    return this.http.request(newRequest);
   } 
 }

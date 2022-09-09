@@ -56,8 +56,9 @@ export class NewGoalComponent implements OnInit {
   onFileSelect(event :any) {
     const file:File = event.target.files[0];
     if (file) {
-        this.goalService.uploadImage(file);
-        this.goalImage = "../../../assets/uploaded_photos/" + file.name;
+        this.goalService.uploadImage(file).subscribe(() => {
+          this.goalImage = "../../../assets/uploaded_photos/" + file.name;
+        });
     }
   }
 

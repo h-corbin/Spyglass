@@ -1,10 +1,9 @@
 body {
-    /* background-image: url("../assets/photos/savings.png"); */
-    background-position: center;
-    background-size: cover;
+    background-color: #caeff4;
+    /* background-color: #FAD6D9; */
 }
 nav {
-    background-color: #FAD6D9;
+    background-color: #caeff4;
     padding-left: 15px;
 }
 
@@ -52,7 +51,7 @@ nav {
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #44c5e5;
+    background-color: #caeff4;
 }
 
 .dropdown-content a {
@@ -63,7 +62,7 @@ nav {
 }
 
 .dropdown-content a:hover {
-    background-color: #ddd;
+    ackground-color: #caeff4;
 }
 
 .dropdown:hover .dropdown-content {

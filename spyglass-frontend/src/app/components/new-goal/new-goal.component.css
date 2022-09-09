@@ -1,3 +1,16 @@
+body {
+    background-color: #caeff4;
+    background-image: url("../../../assets/photos/background_savings.jpg");
+    background-position: center;
+    background-size: cover;
+}
+
+.goalBox {
+    display: flex;
+    justify-content: space-between;
+}
+img {max-width:100%;}
+
 .form-group {
     padding: 5px;
 }
@@ -14,6 +27,15 @@ h1 {
 
 .file-input {
     display: none;
+}
+
+.file-upload {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.typeStuff {
+    margin-top: 10px;
 }
 
 span {
@@ -63,6 +85,10 @@ ul::before{
     display: flex;
     justify-content: center;
     margin: 5px;
+}
+
+.upload-btn {
+    justify-content: right;
 }
 
 #typeSelector {
