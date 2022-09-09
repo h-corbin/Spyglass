@@ -4,8 +4,8 @@ export class Goal {
     description : string = '';
     picture : string = '';
     targetDate : string = '';
-    targetAmount : number = 0.0;
-    currentAmount : number = 0.0;
+    targetAmount? : number
+    currentAmount? : number;
     progress? : number = 0.0;
     users : Array<String> = [];
     displayPartners = false;

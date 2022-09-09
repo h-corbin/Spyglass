@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ChildActivationStart, Router } from '@angular/router';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { Goal } from 'src/app/models/goal';
 import { GoalType } from 'src/app/models/goalType';
 import { GoalsService } from 'src/app/services/goals.service';
@@ -22,7 +22,7 @@ export class NewGoalComponent implements OnInit {
 
   constructor(
     public router: Router,
-    private goalService: GoalsService,
+    private goalService: GoalsService
   ) { }
 
   ngOnInit(): void {
@@ -61,5 +61,4 @@ export class NewGoalComponent implements OnInit {
         });
     }
   }
-
 }

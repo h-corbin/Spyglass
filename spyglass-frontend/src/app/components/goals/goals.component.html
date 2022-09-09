@@ -20,13 +20,13 @@
                 target date: {{ goal.targetDate }}
               </li>
               <li class="list-group-item">
-                target amount: ${{ goal.targetAmount }}
+                target amount: {{ goal.targetAmount | currency}}
               </li>
               <li class="list-group-item">
-                  current amount: ${{ goal.currentAmount }}
+                  current amount: {{ goal.currentAmount | currency }}
               </li>
               <li class="list-group-item">
-                  progress: {{ goal.progress }}%
+                  progress: {{ goal.progress | number :'1.0-2' }}%
                   <mat-progress-bar mode="determinate" value="{{ goal.progress }}"></mat-progress-bar>
               </li>
               <li class="list-group-item" *ngIf="goal.displayPartners">

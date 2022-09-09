@@ -1,3 +1,4 @@
+import { formatCurrency, formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -17,6 +18,8 @@ export class GoalsComponent implements OnInit {
   updateGoalFailed = false;
   newPartner: String = "";
   noGoals = true;
+  format = 'MM/dd/yyyy';
+  locale = 'en-US';
 
   constructor(
     public router: Router,
@@ -73,7 +76,15 @@ export class GoalsComponent implements OnInit {
       } else {
         this.noGoals = false;
         for (var goal of this.goalList) {
-          goal.progress = 100 * (goal.currentAmount / goal.targetAmount);
+          if (typeof goal.currentAmount !== 'undefined' && typeof goal.targetAmount !== 'undefined') {
+            if (goal.targetAmount != 0) {
+              goal.progress = 100 * (goal.currentAmount / goal.targetAmount);
+            } else {
+              goal.progress = 0;
+            }
+          }
+          
+          goal.targetDate = formatDate(goal.targetDate, this.format, this.locale);
           if (goal.users.length == 1) {
             goal.displayPartners = false;
           } else {

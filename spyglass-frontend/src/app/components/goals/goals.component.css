@@ -1,5 +1,5 @@
 .card {
-    background-color: #FAD6D9;
+    background-color: white;
 }
 
 .card-body {
@@ -7,9 +7,6 @@
     margin-top: none;
 }
 
-li {
-    background-color: #FAD6D9;
-}
 
 .modal-footer{
     justify-content: center;

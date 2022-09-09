@@ -38,7 +38,7 @@ public class SecurityConfiguration {
 	@Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.httpBasic();
-        //http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()).ignoringAntMatchers("/register");
+        //http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
         http.csrf().disable();
         
         http.authorizeHttpRequests().mvcMatchers(HttpMethod.OPTIONS, "/**").permitAll();
