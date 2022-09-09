@@ -7,20 +7,18 @@
                 src="{{goalImage}}"
             />
             <div *ngIf="selected">
+                <br>
                 <input type="file" class="file-input" accept="image/png, image/jpeg" (change)="onFileSelect($event)" #fileUpload>
                 <div class="file-upload">
-
-                    {{fileName || "Upload your own image"}}
-                    
-                        <button mat-mini-fab color="primary" class="upload-btn"
-                        (click)="fileUpload.click()">
-                            <mat-icon>add_a_photo_alternate</mat-icon>
-                        </button>
+                    <button mat-mini-fab color="primary" class="upload-btn"
+                    (click)="fileUpload.click()">Upload your own image
+                        <mat-icon>add_a_photo_alternate</mat-icon>
+                    </button>
                 </div>
             </div>
         </div>
 
-        <div>
+        <div class="typeStuff">
             <div class="form-group row">
                 <div id="typeSelector">
                     <select id="typeSelect" #typeSelect name="typeSelect" class="form-control" (change)="onTypeSelect($any($event.target).value)">

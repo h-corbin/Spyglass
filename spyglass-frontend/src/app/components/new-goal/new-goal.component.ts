@@ -15,7 +15,7 @@ export class NewGoalComponent implements OnInit {
   typeList: Array<String> = ["car", "education", "gifts", "house", "rainy day", "retirement", "travel", "other"];
   selected = false;
   selectedType: GoalType = new GoalType("Select a goal type","");
-  goalImage: String = ''; 
+  goalImage: string = ''; 
   newGoalFailed = false;
   fileName = '';
   @Output() submitted = new EventEmitter();
@@ -29,7 +29,7 @@ export class NewGoalComponent implements OnInit {
   }
 
   onSubmit() {
-    this.goal.picture = this.selectedType.image;
+    this.goal.picture = this.goalImage;
     this.goalService.newGoal(this.goal).subscribe(res => {
       this.newGoalFailed = false;
       this.submitted.emit();

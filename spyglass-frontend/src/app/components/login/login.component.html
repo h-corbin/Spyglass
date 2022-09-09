@@ -1,28 +1,36 @@
 <body>
-    <div class="container col-md-4">
-        <form class="form-group">
-            <div class="alert alert-warning" *ngIf='invalidLogin'>Invalid username and password.</div>
-            <div class="alert alert-success" *ngIf='registerSuccess'>New acount has been created. Please login to continue.</div>
-            <div class="form-group">
-                <input type="text" class="form-control" id="username" [(ngModel)]="username" placeholder="Username"
-                    name="username">
-            </div>
-            <div class="form-group row">
-                <div id="inputPass1">
-                    <input matInput class="form-control" [type]="showPassword ? 'text' : 'password'" name="password" placeholder="Password" [(ngModel)]="password">
-                </div>
-                <div id="iconPass1">
-                    <mat-icon matSuffix (click)="togglePasswordVisibility()">
-                        {{showPassword?'visibility_off':'visibility'}}
-                    </mat-icon>
-                </div>
-            </div>
-        </form>
-        <div class="button">
-            <button (click)=login() class="btn btn-success">Login</button>
+    <div class="loginStuff">
+        <div class="item background">
+            
         </div>
-        <div class="button"> 
-            <button class="btn btn-secondary btn-sm" (click)="open(newUserModal)">New User</button> 
+
+        <div class="item container col-md-4">
+            <div class="loginStuff">
+                <form class="form-group">
+                    <div class="alert alert-warning" *ngIf='invalidLogin'>Invalid username and password.</div>
+                    <div class="alert alert-success" *ngIf='registerSuccess'>New acount has been created. Please login to continue.</div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="username" [(ngModel)]="username" placeholder="Username"
+                            name="username">
+                    </div>
+                    <div class="form-group row">
+                        <div id="inputPass1">
+                            <input matInput class="form-control" [type]="showPassword ? 'text' : 'password'" name="password" placeholder="Password" [(ngModel)]="password">
+                        </div>
+                        <div id="iconPass1">
+                            <mat-icon matSuffix (click)="togglePasswordVisibility()">
+                                {{showPassword?'visibility_off':'visibility'}}
+                            </mat-icon>
+                        </div>
+                    </div>
+                </form>
+                <div class="button">
+                    <button (click)=login() class="btn btn-success">Login</button>
+                </div>
+                <div class="button"> 
+                    <button class="btn btn-secondary btn-sm" (click)="open(newUserModal)">New User</button> 
+                </div>
+            </div>
         </div>
     </div>
 </body>

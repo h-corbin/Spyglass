@@ -1,6 +1,10 @@
-
+body {
+    /* background-image: url("../assets/photos/savings.png"); */
+    background-position: center;
+    background-size: cover;
+}
 nav {
-    background-color: #44c5e5;
+    background-color: #FAD6D9;
     padding-left: 15px;
 }
 
