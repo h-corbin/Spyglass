@@ -17,7 +17,7 @@ export class GoalsComponent implements OnInit {
   editGoal = new Goal();
   updateGoalFailed = false;
   newPartner: String = "";
-  noGoals = true;
+  noGoals = false;
 
   constructor(
     public router: Router,
@@ -85,6 +85,9 @@ export class GoalsComponent implements OnInit {
           }
         }
       }
+    }, 
+    () => {
+      this.noGoals = true;
     })
   }
 

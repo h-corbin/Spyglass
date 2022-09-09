@@ -76,6 +76,7 @@ public class GoalServiceImpl implements GoalService {
 		Goal goal = this.findbyId(id, name);
 		if (goal != null) {
 			Set<User> userList = goal.getUsers();
+			int numUsers = userList.size();
 			Optional<User> user = this.userRepository.findById(name);
 			if (user.isPresent()) { 
 				// remove from join table
@@ -85,7 +86,7 @@ public class GoalServiceImpl implements GoalService {
 				goalRepository.save(goal);
 			}
 			
-			if (userList.size() == 1) { 
+			if (numUsers == 1) { 
 				goalRepository.delete(goal);
 			}
 		}
