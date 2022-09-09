@@ -18,14 +18,17 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 @Entity
 @Table(name = "goals")
 public class Goal {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Schema(description = "generated Id")
 	private int goalId;
-	
+
 	@NotBlank
 	private String name;
 	
@@ -33,6 +36,7 @@ public class Goal {
 	private String picture;
 	private LocalDate targetDate;
 	
+	@NotNull
 	@DecimalMin(value = "0.0")
 	@Digits(integer=10, fraction=2)
 	private BigDecimal targetAmount;
@@ -44,6 +48,7 @@ public class Goal {
 	
 	@ManyToMany(mappedBy = "goals")
 	@JsonIdentityReference(alwaysAsId = true)
+	@Schema(description = "list of users with access to this goal")
 	private Set<User> users = new HashSet<>();
 	
 	public void addUser(User user) {

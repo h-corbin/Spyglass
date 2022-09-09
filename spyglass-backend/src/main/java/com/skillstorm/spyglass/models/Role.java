@@ -10,14 +10,18 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 
 
 
 @Entity
 @Table(name="authorities")
+@Schema(description = "for authorization")
 public class Role {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Schema(description = "generated Id")
 	private int authorityId;
 	
 	private String authority = "ROLE_USER";
